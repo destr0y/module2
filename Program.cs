@@ -13,23 +13,63 @@ namespace Module2
         }
 
         public int GetTotalTax(int companiesNumber, int tax, int companyRevenue)
-        {
-            throw new NotImplementedException();
+        { 
+            return (companyRevenue * tax / 100) * companiesNumber;
         }
 
         public string GetCongratulation(int input)
         {
-            throw new NotImplementedException();
+            string output;
+            
+            if ((input % 2 == 0) && (input >= 18))
+                output = "Поздравляю с совершеннолетием!";
+            else if (((input >= 12) && (input <= 18)) && (input % 2 != 0))
+                output = "Поздравляю с переходом в старшую школу!";
+            else output = $"Поздравляю с {input}-летием";
+
+            return output;
         }
 
         public double GetMultipliedNumbers(string first, string second)
         {
-            throw new NotImplementedException();
+            var formatter = new NumberFormatInfo { NumberDecimalSeparator = "." };
+
+            double firstNumber = double.Parse(first.Replace(',','.'), formatter);
+            double secondNumber = double.Parse(second.Replace(',','.'), formatter);
+
+            return firstNumber * secondNumber;
         }
 
         public double GetFigureValues(FigureEnum figureType, ParameterEnum parameterToCompute, Dimensions dimensions)
         {
-            throw new NotImplementedException();
+            double result = 0;
+            
+            switch (figureType)
+            {
+                case FigureEnum.Circle:
+                {
+                    result = parameterToCompute == ParameterEnum.Perimeter
+                        ? Math.PI * 2 * dimensions.Radius
+                        : Math.PI * Math.Pow(dimensions.Radius, 2);
+                    break;
+                }
+                case FigureEnum.Rectangle:
+                {
+                    result = parameterToCompute == ParameterEnum.Perimeter
+                        ? (dimensions.FirstSide + dimensions.SecondSide) * 2
+                        : dimensions.FirstSide * dimensions.SecondSide;
+                    break;
+                }
+                case FigureEnum.Triangle:
+                {
+                    result = parameterToCompute == ParameterEnum.Perimeter
+                        ? dimensions.FirstSide + dimensions.SecondSide + dimensions.ThirdSide
+                        : dimensions.FirstSide * dimensions.Height * 0.5;
+                    break;
+                }
+            }
+
+            return result;
         }
     }
 }
