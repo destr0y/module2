@@ -9,12 +9,14 @@ namespace Module2
     {
         static void Main(string[] args)
         {
+            Console.WriteLine(GetTotalTax(1, 100, 100));
             Console.WriteLine("Hello World!");
         }
 
-        public int GetTotalTax(int companiesNumber, int tax, int companyRevenue)
-        { 
-            return (companyRevenue * tax / 100) * companiesNumber;
+        public static int GetTotalTax(int companiesNumber, int tax, int companyRevenue)
+        {
+            double companyTax = (double)companyRevenue * tax / 100;
+            return Convert.ToInt32(companyTax * companiesNumber);
         }
 
         public string GetCongratulation(int input)
@@ -25,7 +27,7 @@ namespace Module2
                 output = "Поздравляю с совершеннолетием!";
             else if (((input >= 12) && (input <= 18)) && (input % 2 != 0))
                 output = "Поздравляю с переходом в старшую школу!";
-            else output = $"Поздравляю с {input}-летием";
+            else output = $"Поздравляю с {input}-летием!";
 
             return output;
         }
@@ -49,8 +51,8 @@ namespace Module2
                 case FigureEnum.Circle:
                 {
                     result = parameterToCompute == ParameterEnum.Perimeter
-                        ? Math.PI * 2 * dimensions.Radius
-                        : Math.PI * Math.Pow(dimensions.Radius, 2);
+                        ? 3.14 * 2 * dimensions.Radius
+                        : 3.14 * Math.Pow(dimensions.Radius, 2);
                     break;
                 }
                 case FigureEnum.Rectangle:
@@ -65,11 +67,19 @@ namespace Module2
                     result = parameterToCompute == ParameterEnum.Perimeter
                         ? dimensions.FirstSide + dimensions.SecondSide + dimensions.ThirdSide
                         : dimensions.FirstSide * dimensions.Height * 0.5;
+                    if (result == 0)
+                    {
+                        var p = dimensions.FirstSide + dimensions.SecondSide + dimensions.ThirdSide;
+                        result = Math.Sqrt(p * 
+                                           (p - dimensions.FirstSide) *
+                                           (p - dimensions.SecondSide) *
+                                           (p - dimensions.ThirdSide));
+                    }
                     break;
                 }
             }
 
-            return result;
+            return Math.Round(result);
         }
     }
 }
