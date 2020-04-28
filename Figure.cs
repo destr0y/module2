@@ -4,9 +4,10 @@ using System.Text;
 
 namespace Module2
 {
-    public enum ParameterEnum
+    public enum Figure
     {
-        Square,
-        Perimeter
+        Triangle,
+        Rectangle,
+        Circle
     }
 }

@@ -42,29 +42,29 @@ namespace Module2
             return firstNumber * secondNumber;
         }
 
-        public double GetFigureValues(FigureEnum figureType, ParameterEnum parameterToCompute, Dimensions dimensions)
+        public double GetFigureValues(Figure figureType, Parameter parameterToCompute, Dimensions dimensions)
         {
             double result = 0;
             
             switch (figureType)
             {
-                case FigureEnum.Circle:
+                case Figure.Circle:
                 {
-                    result = parameterToCompute == ParameterEnum.Perimeter
+                    result = parameterToCompute == Parameter.Perimeter
                         ? 3.14 * 2 * dimensions.Radius
                         : 3.14 * Math.Pow(dimensions.Radius, 2);
                     break;
                 }
-                case FigureEnum.Rectangle:
+                case Figure.Rectangle:
                 {
-                    result = parameterToCompute == ParameterEnum.Perimeter
+                    result = parameterToCompute == Parameter.Perimeter
                         ? (dimensions.FirstSide + dimensions.SecondSide) * 2
                         : dimensions.FirstSide * dimensions.SecondSide;
                     break;
                 }
-                case FigureEnum.Triangle:
+                case Figure.Triangle:
                 {
-                    result = parameterToCompute == ParameterEnum.Perimeter
+                    result = parameterToCompute == Parameter.Perimeter
                         ? dimensions.FirstSide + dimensions.SecondSide + dimensions.ThirdSide
                         : dimensions.FirstSide * dimensions.Height * 0.5;
                     if (result == 0)
